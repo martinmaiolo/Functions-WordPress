@@ -1,0 +1,15 @@
+<?php
+//Do not copy the above php tag. 
+
+/* 
+*@link: http://extracatchy.net/redirect-user-after-login/ 
+*@title: Redirect to HomePage after Login
+*/
+
+function redirect_user_homepage() {
+  if ( is_user_logged_in() && is_admin() && !current_user_can( 'administrator' ) ) {
+    wp_redirect( home_url() . '/blog/' );
+    exit;
+  }
+}
+add_action( 'init', 'redirect_user_homepage' );
