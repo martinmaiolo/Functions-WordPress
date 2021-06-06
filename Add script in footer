@@ -1,0 +1,11 @@
+function myscript() {
+?>
+<script type="text/javascript">
+  if ( undefined !== window.jQuery ) {
+   // Jquery code goes here
+  	
+   }
+</script>
+<?php
+}
+add_action( 'wp_footer', 'myscript' );
