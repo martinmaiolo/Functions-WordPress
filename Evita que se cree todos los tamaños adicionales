@@ -1,0 +1,23 @@
+/* Evitar que WP cree tamaños de imagen adicionales */
+function ayudawp_desactiva_medios_adicionales_wp($sizes) {
+	
+	unset($sizes['thumbnail']);    // desactivar tamaño miniatura
+	unset($sizes['medium']);       // desactivar tamaño medio
+	unset($sizes['large']);        // desactivar tamaño grande
+	unset($sizes['medium_large']); // desactivar tamaño medio-grande
+	unset($sizes['1536x1536']);    // desactivar tamaño medio-grande x2
+	unset($sizes['2048x2048']);    // desactivar tamaño grande x2
+	return $sizes;
+}
+add_action('intermediate_image_sizes_advanced', 'ayudawp_desactiva_medios_adicionales_wp');
+
+/* Evitar que se creen los tamaños escalados */
+add_filter('big_image_size_threshold', '__return_false')
+
+
+/* Evitar que se creen otros tamaños de imagen */
+function ayudawp_desactiva_otros_medios_adicionales() {
+remove_image_size('post-thumbnail'); // desactiva imágenes añadidas mediante set_post_thumbnail_size() 
+remove_image_size('otro-tamaño-adicional'); // desactiva cualquier otro tamaño de imagen adicional
+}
+add_action('init', 'ayudawp_desactiva_otros_medios_adicionales');
