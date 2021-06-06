@@ -1,0 +1,8 @@
+// Load cForms scripts only on the contact page
+
+function deregister_cforms() {
+	if (!is_page('contact')) {
+		remove_action('wp_head','cforms_style');
+	}
+}
+add_action( 'wp_print_scripts', 'deregister_cforms');
