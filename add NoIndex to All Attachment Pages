@@ -1,0 +1,6 @@
+/* Function to add NoIndex to All Attachment Pages */
+function oweb_noindex_attc_pages(){
+	if( ! is_attachment() ) return;
+		echo "\n";
+	}
+add_action( 'wp_head','oweb_noindex_attc_pages' );
