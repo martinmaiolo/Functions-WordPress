@@ -1,0 +1,26 @@
+/**
+ * Esta función quita las categorías y las etiquetas de las entradas.
+ */
+function mgwp_unregister_categories() {
+   unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+   unregister_taxonomy_for_object_type( 'category', 'post' );
+}
+add_action( 'init', 'mgwp_unregister_categories' );
+
+____________________________
+
+/**
+ * Esta función quita las etiquetas de las entradas.
+ */
+function mgwp_unregister_tags() {
+   unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+}
+add_action( 'init', 'mgwp_unregister_tags' );
+
+/**
+ * Esta función quita las categorías de las entradas.
+ */
+function mgwp_unregister_categories() {
+   unregister_taxonomy_for_object_type( 'category', 'post' );
+}
+add_action( 'init', 'mgwp_unregister_categories' );
