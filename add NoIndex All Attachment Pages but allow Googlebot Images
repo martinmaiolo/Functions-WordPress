@@ -1,0 +1,7 @@
+/* Function to add NoIndex All Attachment Pages but allow Googlebot Images */
+function oweb_noindex_attc_pages_select(){
+	if( ! is_attachment() ) return;
+		echo "\n";
+		echo "\n";
+	}
+add_action( 'wp_head','oweb_noindex_attc_pages_select' );
