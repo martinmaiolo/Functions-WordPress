@@ -1,0 +1,11 @@
+/* Function to add NoIndex to UnAttached Images */
+function oweb_noindex_unattc_images(){
+	if( ! is_attachment() ) return;
+	$oweb_attc_data = get_post();	
+	$oweb_is_attached = $oweb_attc_data->post_parent;
+	
+	if( $oweb_is_attached == 0 ){
+		echo "\n";
+	}	
+}
+add_action( 'wp_head','oweb_noindex_unattc_images' );
