@@ -1,0 +1,14 @@
+/** Función que elimina todo rastro de fechas en los artículos */
+function bf_remove_dates() {
+  add_filter('the_time', '__return_false');
+  add_filter('get_the_time', '__return_false');
+  add_filter('the_modified_time', '__return_false');
+  add_filter('get_the_modified_time', '__return_false');
+  add_filter('the_date', '__return_false');
+  add_filter('get_the_date', '__return_false');
+  add_filter('the_modified_date', '__return_false');
+  add_filter('get_the_modified_date', '__return_false');
+  add_filter('get_comment_date', '__return_false');
+  add_filter('get_comment_time', '__return_false');
+}
+add_action('loop_start', 'bf_remove_dates');
