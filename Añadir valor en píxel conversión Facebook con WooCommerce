@@ -1,0 +1,29 @@
+// Añadir valor en píxel conversión Facebook con WooCommerce
+add_action( 'woocommerce_thankyou', 'jb_pixeltracking' );
+
+function jb_pixeltracking( $order_id ) {
+   $order = new WC_Order( $order_id );
+   $order_total = $order->get_total();
+ ?>
+    
+    (function() {
+     var _fbq = window._fbq || (window._fbq = []);
+     if (!_fbq.loaded) {
+       var fbds = document.createElement('script');
+       fbds.async = true;
+       fbds.src = '//connect.facebook.net/en_US/fbds.js';
+       var s = document.getElementsByTagName('script')[0];
+       s.parentNode.insertBefore(fbds, s);
+       _fbq.loaded = true;
+     }
+    })();
+    window._fbq = window._fbq || [];
+    window._fbq.push(['track', 'XXXXXXXXXXXXXX', {'value':'','currency':'GBP'}]);
+    
+    
+    <img height="1" width="1" alt="" style="display:none" src=" https://www.facebook.com/trev=XXXXXXXXXXXXXX&cd[value]=&cd[currency]=GBP&noscript= 1" />
+    
+     
+  
+<?php
+}
