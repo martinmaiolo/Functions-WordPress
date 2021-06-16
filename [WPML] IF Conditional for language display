@@ -1,0 +1,12 @@
+
+//thuthuat.vip
+
+<?php if(wpml_getLanguage()=='en'); ?> 
+
+---do something---
+
+<?php elseif(wpml_getLanguage()=='vi'); ?> 
+
+---do something else--
+
+<?php endif; ?>
