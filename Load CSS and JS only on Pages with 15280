@@ -1,0 +1,27 @@
+function conditionally_load_plugin_js_css() { 
+
+    // Load CSS and JS only on Pages with 15280 
+    if(! is_page( array(15280) ) ) {
+
+        // Easy testimonial
+        wp_dequeue_style('easy_testimonial_style'); 
+        wp_dequeue_style('single-testimonial-block'); 
+        wp_dequeue_style('random-testimonial-block'); 
+        wp_dequeue_style('testimonials-list-block'); 
+        wp_dequeue_style('testimonials-cycle-block'); 
+        wp_dequeue_style('testimonials-grid-block');
+        // scripts
+        wp_deregister_script('gp_cycle2');
+        wp_deregister_script('easy-testimonials-reveal');
+
+        // Everest Tab Lite
+        wp_dequeue_style('et-frontend-style');
+        // Keep these if you like fontawesome and animate.css
+        wp_dequeue_style('et_fontawesome_style');
+        wp_dequeue_style('et-animate-style');
+        // script
+        wp_deregister_script('et-frontend-script');
+    } 
+} 
+// Everest Tab Lite has priority more than 9999 so i changed the priority to 99999
+add_action( 'wp_enqueue_scripts', 'conditionally_load_plugin_js_css', 99999);
