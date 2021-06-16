@@ -1,0 +1,13 @@
+// USE SMTP
+add_action( 'phpmailer_init', 'setup_phpmailer_init' );
+function setup_phpmailer_init( PHPMailer $phpmailer ) {
+    $phpmailer->Host = 'HOSTNAME'; // eg. smtp.gmail.com
+    $phpmailer->Port = 587; // could be different
+    $phpmailer->Username = 'ENTERUSERNAME'; // SMTP Username
+    $phpmailer->Password = 'ENTERPASSWORD'; // SMTP Password
+    $phpmailer->SMTPAuth = true; // Set to true if login is required
+    $phpmailer->SMTPSecure = 'tls'; // enable if required, 'tls' is another possible value
+    $phpmailer->From       = 'mailcuaban@gmail.com';
+    $phpmailer->FromName   = 'Thủ Thuật VIP - THUTHUAT.VIP';
+    $phpmailer->IsSMTP();
+}
