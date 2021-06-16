@@ -1,0 +1,11 @@
+Restrict scripts and styles
+function conditionally_load_plugin_js_css(){
+if( is_home() || is_front_page() ){
+	wp_dequeue_script('neve-script'); # Restrict scripts.
+	wp_dequeue_script('comment-reply'); # Restrict scripts.
+	wp_dequeue_script('elementor-common'); # Restrict scripts.
+	wp_dequeue_script('elementor-pro-app'); # Restrict scripts.
+	wp_dequeue_script('elementor-app-loader'); # Restrict scripts.
+	}
+}	
+add_action( 'wp_enqueue_scripts', 'conditionally_load_plugin_js_css', 999 );
