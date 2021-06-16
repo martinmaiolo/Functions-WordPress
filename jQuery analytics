@@ -1,0 +1,22 @@
+<script type="text/javascript">
+jQuery(function($) { 
+
+		(function() {
+
+			function trackEvents() {
+				
+				ga( 'send', 'pageview' );
+
+				ga( 'send', {"hitType":"event","eventCategory":"Homepage","eventAction":"viewed homepage","eventLabel":null,"eventValue":null,"nonInteraction":true} );
+			}
+
+			if ( 'undefined' !== typeof ga ) {
+				trackEvents();
+			} else {
+				$( document ).on( 'wc_google_analytics_pro_loaded', trackEvents );
+			}
+
+		})();
+		
+ });
+</script>
