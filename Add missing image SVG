@@ -1,0 +1,43 @@
+function wpr_getimagesize($image_url)  {
+
+  // Get the extension to know if the file is SVG or not
+  $file = new SplFileInfo($image_url);
+  $ext  = $file->getExtension();
+  
+  // Fitler SVG files and extract the dimensions using the width and height attributes with the viewBox attribute as fallback
+  // Reference for the viewBox attribute https://www.w3.org/TR/SVG/coords.html#ViewBoxAttribute
+  if( $ext === 'svg' ){
+    $svgfile = simplexml_load_file(rawurlencode($image_url));
+    $width = explode(' ', (string)$svgfile->attributes()->width);
+    $height = explode(' ', (string)$svgfile->attributes()->height);
+    
+    // Use width and height attributes if present
+    
+    if(!empty($width[0]) && !empty($height[0])) {
+        $size[] = $width[0]; // adding width
+        $size[] = $height[0]; // adding height
+        $size[] = 0; // adding image type - 0 for SVG since there is no IMAGETYPE_SVG constant
+        $size[] = 'width="'.$width[0].'" height="'.$height[0].'"'; // adding the dimension on the array
+        return $size;
+    }
+    
+    // Fallback to viewBox if one or both width and height attributes are missing from the SVG document
+    
+    $viewBox = explode(' ', (string)$svgfile->attributes()->viewBox);
+    if (!empty ($viewBox)) {
+        // width and height are respectively the last two entries in the viewBox tag
+        $size = array_splice($viewBox, -2);
+        
+        // Making the $size array fit the getimagesize() format
+        $size[] = 0; // adding image type - 0 for SVG since there is no IMAGETYPE_SVG constant
+        $size[] = 'width="'.$size[0].'" height="'.$size[1].'"'; // adding the dimension on the array
+        
+        return $size;
+    }
+  }
+
+  $size = getimagesize($image_url);
+
+  return $size;
+  
+}
