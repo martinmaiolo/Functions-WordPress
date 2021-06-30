@@ -1,0 +1,15 @@
+reset the cookies
+
+      //reset the cookies (not shown in tutorial)
+      $('.reset a').click(function() {
+        // check that if it was cliked before or not
+        if (!$(this).hasClass('clicked')) {
+          // add class that the link is clicked and shot the footer with delay
+          $(this).addClass('clicked');
+
+          // add cookie setting that user has clicked
+          $.cookie('hide-after-load', 'no', {expires: 7 });
+          $.cookie('hide-after-click', 'no', {expires: 7 });
+        }
+        location.reload();
+      });
