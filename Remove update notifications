@@ -1,0 +1,7 @@
+// Remove update notifications
+add_action('admin_enqueue_scripts', 'hidenotice_admin_theme_style');
+add_action('login_enqueue_scripts', 'hidenotice_admin_theme_style');
+
+function hidenotice_admin_theme_style() {
+   echo '<style>.update-nag, .updated, .error, .is-dismissible { display: none !important; }</style>';
+}
