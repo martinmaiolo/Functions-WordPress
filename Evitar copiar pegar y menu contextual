@@ -1,0 +1,24 @@
+add_action('wp_footer', 'dcms_avoid_copy_paste');
+function dcms_avoid_copy_paste() {
+	if ( is_page('politica-privacidad') ):
+    ?>
+        <script>
+        	(function( $ ) {
+        		// Evitar copiar pegar y menu contextual
+        		$('body').bind('copy contextmenu',function(e) {
+    				e.preventDefault(); return false; 
+				});
+
+        		// Evitar selección
+		        $(document).ready(function(){
+		            $("body").css("-webkit-user-select","none");
+		            $("body").css("-moz-user-select","none");
+		            $("body").css("-ms-user-select","none");
+		            $("body").css("-o-user-select","none");
+		            $("body").css("user-select","none");
+		        });
+			})( jQuery );
+        </script>
+    <?php
+	endif;
+}
