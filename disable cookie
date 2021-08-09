@@ -1,0 +1,30 @@
+<script>
+  (function() {
+    function init($) {
+      jQuery( window ).on( 'elementor/frontend/init', function() {
+        // Wait for elementor to be initialized. 
+        // Then override elementorFrontend.storage.get and elementorFrontend.storage.set with empty functions,
+        // to block Elementor from writing or reading anything there.
+        if (elementorFrontend && !elementorFrontend.isEditMode() && !elementorFrontend.isWPPreviewMode()) {
+          elementorFrontend.storage.get = function() {}
+          elementorFrontend.storage.set = function() {}
+          
+          if (window.sessionStorage) {
+            window.sessionStorage.removeItem('elementor');
+          }
+          
+          if (window.localStorage) {
+            window.localStorage.removeItem('elementor');
+          }
+        }
+      });
+    }
+    
+    var waitForJQuery = setInterval(function () {
+      if (typeof jQuery != 'undefined') {
+        init(jQuery);
+        clearInterval(waitForJQuery);
+      }
+    }, 10);
+  })();
+</script>
